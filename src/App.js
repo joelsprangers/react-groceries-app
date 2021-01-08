@@ -8,7 +8,7 @@ import Container from "./Container";
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header title="artist" />
       <Container />
     </div>
   );

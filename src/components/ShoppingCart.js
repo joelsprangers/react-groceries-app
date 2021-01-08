@@ -3,11 +3,21 @@ import ListItem from "./ListItem";
 
 const ShoppingCart = (props) => {
   return (
-    <ul className="item-list__cart">
-      {props.itemList.map((item) => (
-        <ListItem value={item} key={item.id} title={item.title} />
-      ))}
-    </ul>
+    <div>
+      <h3>must sees</h3>
+      <input
+        className="button item-button shopping-list-button"
+        type="button"
+        name="empty dreams"
+        value="empty wishing list"
+        onClick={props.onClick}
+      />
+      <ul className="item-list item-list__cart">
+        {props.itemList.map((item) => (
+          <ListItem value={item} key={item.id} title={item.title} />
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -8,33 +8,36 @@ class Container extends Component {
 
     this.state = {
       groceryItems: [
-        { id: 1, title: "groceryList apricorns" },
-        { id: 2, title: "bananas" },
-        { id: 3, title: "unicorns" },
+        { id: 1, title: "LAKSHMI" },
+        { id: 2, title: "Ionnalee" },
+        { id: 3, title: "Nils Frahm" },
       ],
       shoppingListItems: [
-        { id: 1, title: "shoppingList apricorns" },
-        { id: 2, title: "bananas" },
-        { id: 3, title: "unicorns" },
+        { id: 100, title: "BLACKPINK" },
+        { id: 200, title: "Billie Eilish" },
       ],
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleButton = this.handleButton.bind(this);
   }
 
   handleClick(event) {
-    let item = event.target;
-    let itemObj = item.getAttribute("value");
-    console.log(itemObj);
-    // hier moet het item object worden toegevoegd
+    let itemId = event.target.id;
+    let newItem = this.state.groceryItems.filter(
+      (item) => item.id === parseInt(itemId)
+    );
 
     this.setState((prevState) => {
-      const newShoppingList = [...prevState.shoppingListItems];
-      newShoppingList.push({
-        id: newShoppingList.length + 1,
-        title: "hier moet het goede item komen",
-      });
-      const newState = { ...prevState, shoppingListItems: newShoppingList };
-      console.log(newState);
+      let shoppingCart = [...prevState.shoppingListItems];
+      shoppingCart.push(newItem[0]);
+      let newState = { ...prevState, shoppingListItems: shoppingCart };
+      return newState;
+    });
+  }
+
+  handleButton(event) {
+    this.setState((prevState) => {
+      let newState = { ...prevState, shoppingListItems: [] };
       return newState;
     });
   }
@@ -42,10 +45,13 @@ class Container extends Component {
   render() {
     return (
       <div className="Container">
-        <ShoppingCart itemList={this.state.shoppingListItems} />
         <GroceryList
-          onClick={this.handleClick}
           itemList={this.state.groceryItems}
+          onClick={this.handleClick}
+        />
+        <ShoppingCart
+          itemList={this.state.shoppingListItems}
+          onClick={this.handleButton}
         />
       </div>
     );

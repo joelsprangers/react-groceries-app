@@ -5,7 +5,8 @@ const ListItem = (props) => (
     className="list-item"
     onClick={props.eventClick}
     key={props.id}
-    value={props.name}
+    id={props.id}
+    value={props.value}
   >
     {props.title}
   </li>
